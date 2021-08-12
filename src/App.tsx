@@ -1,7 +1,8 @@
 import React from 'react'
+import { MainLayout } from 'layout'
 
 const App = () => {
-  return <div className="flex bg-blue-600">Skeleton</div>
+  return <MainLayout>Skeleton</MainLayout>
 }
 
 export default App
