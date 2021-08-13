@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { ReactComponent as TwoLinesSvg } from 'img/icons/Icon_two_lines.svg'
+import { ReactComponent as AddSvg } from 'img/icons/Icon_add.svg'
 
 export type IconSvg = React.FunctionComponent<
   React.SVGProps<SVGSVGElement> & {
@@ -14,3 +15,4 @@ const defaultProps = {
 }
 
 export const TwoLinesIcon: IconSvg = props => <TwoLinesSvg {...defaultProps} {...props} />
+export const AddIcon: IconSvg = props => <AddSvg {...defaultProps} {...props} />
