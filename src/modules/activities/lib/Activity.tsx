@@ -1,7 +1,14 @@
 import React from 'react'
-
-import { Container } from './ActivityItems'
+import { SortableHandle } from 'react-sortable-hoc'
+import { TwoLinesIcon } from 'img'
+import { ContainerActivity } from './ActivityList'
 
 export const Activity = ({ activity }) => {
-  return <Container>{activity}</Container>
+  const DragHandle = SortableHandle(() => <TwoLinesIcon className="mr-4 cursor-pointer" />)
+
+  return (
+    <ContainerActivity>
+      <DragHandle /> {activity}
+    </ContainerActivity>
+  )
 }

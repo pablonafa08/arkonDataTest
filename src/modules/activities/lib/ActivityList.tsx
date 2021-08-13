@@ -1,6 +1,27 @@
 import { styled } from '@material-ui/core'
 // import { Skeleton } from '@material-ui/lab'
 
+export const ContainerActivity = styled('div')(({ theme }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  margin: 8,
+  padding: '12px 20px',
+  overflow: 'hidden',
+  border: '1px solid #E6E5E5',
+  borderRadius: 10,
+  backgroundColor: '#FFF',
+  color: '#363636',
+  fontSize: 14,
+  transition: 'box-shadow 0.3s ease-in-out',
+  '&:hover': {
+    boxShadow: '0px 0px 10px #00000033',
+  },
+  [theme.breakpoints.up('sm')]: {
+    padding: '16px 28px',
+    fontSize: 16,
+  },
+}))
+
 export const MainContainer = styled('div')(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: 'repeat(1, minmax(0, 1fr))',
