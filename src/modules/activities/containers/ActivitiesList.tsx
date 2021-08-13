@@ -1,11 +1,13 @@
 import React from 'react'
 import { SortableContainer, SortableElement } from 'react-sortable-hoc'
 import arrayMove from 'array-move'
+import { useActivitiesState, useActivitiesActions } from '../context'
 import { Activity } from '../lib'
 import { NewActivity } from './NewActivity'
 
 export const ActivitiesList = () => {
-  const [itemsActivities, setActivities] = React.useState([])
+  const { activities: itemsActivities } = useActivitiesState()
+  const { setActivities } = useActivitiesActions()
 
   const onAddActivity = value => {
     const newItems = [...itemsActivities]

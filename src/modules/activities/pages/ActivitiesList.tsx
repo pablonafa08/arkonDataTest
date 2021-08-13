@@ -1,6 +1,11 @@
 import React from 'react'
+import { ActivitiesProvider } from '../context'
 import { ActivitiesList } from '../containers'
 
 export const ActivitiesListPage = () => {
-  return <ActivitiesList />
+  return (
+    <ActivitiesProvider>
+      <ActivitiesList />
+    </ActivitiesProvider>
+  )
 }
