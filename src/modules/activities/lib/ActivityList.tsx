@@ -1,5 +1,4 @@
 import { styled } from '@material-ui/core'
-// import { Skeleton } from '@material-ui/lab'
 
 export const ContainerActivity = styled('div')(({ theme }) => ({
   display: 'flex',
@@ -36,25 +35,6 @@ export const MainContainer = styled('div')(({ theme }) => ({
     gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
   },
 }))
-
-// export const SkeletonCard = styled(Skeleton)(({ theme }) => ({
-//   transform: 'none',
-//   height: 168,
-//   margin: 8,
-//   borderRadius: 10,
-//   [theme.breakpoints.up('sm')]: {
-//     height: 182,
-//   },
-// }))
-
-// const itemsSkeleton = [0, 1, 2, 3, 4, 5, 6, 7]
-// export const SkeletonList = () => (
-//   <MainContainer>
-//     {itemsSkeleton.map(i => (
-//       <SkeletonCard key={`skeletonCard-${i}`} animation="wave" />
-//     ))}
-//   </MainContainer>
-// )
 
 export const ErrorMessage = styled('div')(({ theme }) => ({
   display: 'flex',

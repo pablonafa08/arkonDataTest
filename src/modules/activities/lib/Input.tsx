@@ -5,12 +5,12 @@ export const StyledInput = withStyles(() => ({
   root: {
     '& .MuiOutlinedInput-root': {
       borderRadius: 5,
-      color: '#363636',
+      color: '#293462',
       fontWeight: 300,
       backgroundColor: '#FFF',
     },
     '& .MuiOutlinedInput-input': {
-      padding: '16px 24px',
+      padding: '12px 20px',
     },
     '& .MuiOutlinedInput-notchedOutline': {
       border: '2px solid #E6E5E5',
@@ -34,7 +34,7 @@ export interface InputProps extends Omit<TextFieldProps, 'variant' | 'fullWidth'
 
 export const Input: React.FC<InputProps> = props => {
   return (
-    <Grid item xs style={{ minHeight: 90 }}>
+    <Grid item xs style={{ margin: 8 }}>
       <StyledInput variant="outlined" fullWidth {...props} />
     </Grid>
   )

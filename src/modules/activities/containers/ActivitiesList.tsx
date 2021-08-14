@@ -1,7 +1,7 @@
 import React from 'react'
 import { SortableContainer, SortableElement } from 'react-sortable-hoc'
 import arrayMove from 'array-move'
-import { useActivitiesState, useActivitiesActions } from '../context'
+import { useActivitiesState, useActivitiesActions, ActivityItem } from '../context'
 import { Activity } from '../lib'
 import { NewActivity } from './NewActivity'
 
@@ -9,7 +9,7 @@ export const ActivitiesList = () => {
   const { activities: itemsActivities } = useActivitiesState()
   const { setActivities } = useActivitiesActions()
 
-  const onAddActivity = value => {
+  const onAddActivity = (value: ActivityItem) => {
     const newItems = [...itemsActivities]
     newItems.push(value)
     setActivities(newItems)
