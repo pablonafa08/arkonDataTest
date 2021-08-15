@@ -1,19 +1,12 @@
 import React from 'react'
 import { SortableContainer, SortableElement } from 'react-sortable-hoc'
 import arrayMove from 'array-move'
-import { useActivitiesState, useActivitiesActions, ActivityItem } from 'core/context'
-import { Activity } from '../lib'
-import { NewActivity } from './NewActivity'
+import { useActivitiesState, useActivitiesActions } from 'core/context'
+import { Activity } from './Activity'
 
 export const ActivitiesList = () => {
   const { activities: itemsActivities, currentActivity } = useActivitiesState()
   const { setActivities } = useActivitiesActions()
-
-  const onAddActivity = (value: ActivityItem) => {
-    const newItems = [...itemsActivities]
-    newItems.push(value)
-    setActivities(newItems)
-  }
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
     setActivities(arrayMove(itemsActivities, oldIndex, newIndex))
@@ -23,11 +16,5 @@ export const ActivitiesList = () => {
 
   const Activities = SortableContainer(({ items }) => <ul>{items.map((item, index) => (currentActivity?.id !== item.id ? <ActivityItem key={item.id} index={index} item={item} /> : null))}</ul>)
 
-  return (
-    <div>
-      <NewActivity onAdd={onAddActivity} />
-      {currentActivity ? currentActivity.description : null}
-      {itemsActivities.length ? <Activities items={itemsActivities} onSortEnd={onSortEnd} distance={1} lockAxis="y" useWindowAsScrollContainer useDragHandle /> : null}
-    </div>
-  )
+  return <div>{itemsActivities.length ? <Activities items={itemsActivities} onSortEnd={onSortEnd} distance={1} lockAxis="y" useWindowAsScrollContainer useDragHandle /> : null}</div>
 }

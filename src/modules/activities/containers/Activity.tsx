@@ -1,9 +1,9 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core'
 import { SortableHandle } from 'react-sortable-hoc'
-import { TwoLinesIcon, CheckIcon, PencilIcon, TrashIcon, PlayIcon, PauseIcon, StopIcon, ReloadIcon } from 'img'
+import { TwoLinesIcon, CheckIcon, PencilIcon, TrashIcon, PlayIcon, ReloadIcon } from 'img'
 import { useActivitiesActions, ActivityItem } from 'core/context'
-import { ContainerActivity, TimeContent } from './ActivityList'
+import { ContainerActivity, TimeContent, Divider } from '../lib'
 
 const useStyles = makeStyles(() => ({
   icon: {
@@ -27,15 +27,17 @@ export const Activity: React.FC<ActivityProps> = ({ activity }) => {
       <div className="flex items-center">
         <DragHandle /> {activity.description}
       </div>
+
       <div className="flex items-center">
         <TimeContent>{activity.time}</TimeContent>
         <CheckIcon className={classes.icon} />
+
+        <Divider />
+        <PlayIcon className={classes.icon} onClick={() => setCurrentActivity(activity)} />
+
+        <Divider />
         <PencilIcon className={classes.icon} />
         <TrashIcon className={classes.icon} />
-        <PlayIcon className={classes.icon} onClick={() => setCurrentActivity(activity)} />
-        <PauseIcon className={classes.icon} />
-        <StopIcon className={classes.icon} />
-        <ReloadIcon className={classes.icon} />
       </div>
     </ContainerActivity>
   )

@@ -1,35 +1,44 @@
-import { styled } from '@material-ui/core'
+import { styled, Theme } from '@material-ui/core'
 
-export const ContainerActivity = styled('div')(({ theme }) => ({
+export const ContainerActivity = styled('div')<Theme, { variant?: 'primary' | 'current' }>(({ theme, variant = 'primary' }) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
   margin: 8,
   padding: '12px 20px',
   overflow: 'hidden',
-  border: '1px solid #E6E5E5',
+  border: `1px solid ${variant === 'primary' ? '#E6E5E5' : '#293462'}`,
   borderRadius: 10,
-  backgroundColor: '#FFF',
-  color: '#363636',
+  backgroundColor: variant === 'primary' ? '#FFF' : '#293462',
+  color: variant === 'primary' ? '#363636' : '#FFF',
   fontSize: 14,
-  transition: 'box-shadow 0.3s ease-in-out',
+  transition: variant === 'primary' ? 'box-shadow 0.3s ease-in-out' : 'none',
   '&:hover': {
-    boxShadow: '0px 0px 10px #00000033',
+    boxShadow: variant === 'primary' ? '0px 0px 10px #00000033' : 'none',
   },
   [theme.breakpoints.up('sm')]: {
-    padding: '16px 28px',
+    padding: '8px 20px',
     fontSize: 16,
   },
 }))
 
-export const TimeContent = styled('div')(({ theme }) => ({
-  color: '#FFF',
-  backgroundColor: '#293462',
+export const TimeContent = styled('div')<Theme, { variant?: 'primary' | 'current' }>(({ variant = 'primary' }) => ({
+  color: variant === 'primary' ? '#FFF' : '#293462',
+  backgroundColor: variant === 'primary' ? '#293462' : '#FFF',
   padding: '2px 8px',
   borderRadius: 16,
   fontSize: 12,
+  fontWeight: 500,
 }))
 
+export const Divider = styled('div')<Theme, { variant?: 'primary' | 'current' }>(({ variant = 'primary' }) => ({
+  backgroundColor: variant === 'primary' ? '#E6E5E5' : '#FFF',
+  width: 1,
+  height: 35,
+  marginLeft: 12,
+}))
+
+// -------------No usadas-------------
 export const MainContainer = styled('div')(({ theme }) => ({
   display: 'grid',
   gridTemplateColumns: 'repeat(1, minmax(0, 1fr))',

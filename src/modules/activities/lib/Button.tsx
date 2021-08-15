@@ -1,29 +1,27 @@
 import React from 'react'
-import { Button as ButtonMateral, ButtonProps as ButtonMateralProps, makeStyles } from '@material-ui/core'
-import clsx from 'clsx'
+import ButtonMaterial, { ButtonProps as ButtonMProps } from '@material-ui/core/Button'
+import { styled, Theme } from '@material-ui/core'
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    border: `1px solid ${theme.palette.primary.main}`,
-    borderRadius: 50,
-    padding: 8,
-    fontSize: 14,
-    backgroundColor: theme.palette.common.white,
-    '&.Mui-disabled': {
-      color: theme.palette.primary.main,
-      opacity: 0.5,
-    },
+export type ButtonProps = ButtonMProps
+export const Button = styled((props: ButtonMProps) => <ButtonMaterial {...props} />)<Theme, ButtonProps>(({ color, disabled = false, theme, variant }) => {
+  let background: string
+
+  if (disabled && color && variant !== 'outlined') {
+    background = theme.palette[color]['500']
+  }
+
+  return {
+    textAlign: 'center',
+    width: '100%',
+    borderRadius: 35,
+    fontFamily: 'Montserrat',
+    fontSize: '1rem',
+    fontWeight: theme.typography.fontWeightMedium,
+    boxShadow: 'none',
+    backgroundColor: background && `${background} !important`,
+    opacity: disabled ? 0.7 : 1,
     '&:hover': {
-      backgroundColor: theme.palette.primary.main,
-      color: theme.palette.common.white,
-    },
-  },
-}))
-
-export interface ButtonProps extends ButtonMateralProps {}
-
-export const Button: React.FC<ButtonProps> = props => {
-  const classes = useStyles()
-
-  return <ButtonMateral className={clsx(classes.root, props.className)} fullWidth {...props} />
-}
+      boxShadow: '0px 0px 3px 1px #00000033'
+    }
+  }
+})
