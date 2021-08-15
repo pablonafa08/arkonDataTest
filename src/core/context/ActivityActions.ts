@@ -7,7 +7,12 @@ export const useActivitiesActions = () => {
     dispatch({ type: 'SetActivities', payload: activities })
   }
 
+  const setCurrentActivity = (activity: ActivityItem) => {
+    dispatch({ type: 'SetCurrentActivity', payload: activity })
+  }
+
   return {
     setActivities,
+    setCurrentActivity,
   }
 }

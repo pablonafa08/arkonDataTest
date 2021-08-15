@@ -3,6 +3,7 @@ import { styled } from '@material-ui/core'
 export const ContainerActivity = styled('div')(({ theme }) => ({
   display: 'flex',
   alignItems: 'center',
+  justifyContent: 'space-between',
   margin: 8,
   padding: '12px 20px',
   overflow: 'hidden',
@@ -19,6 +20,14 @@ export const ContainerActivity = styled('div')(({ theme }) => ({
     padding: '16px 28px',
     fontSize: 16,
   },
+}))
+
+export const TimeContent = styled('div')(({ theme }) => ({
+  color: '#FFF',
+  backgroundColor: '#293462',
+  padding: '2px 8px',
+  borderRadius: 16,
+  fontSize: 12,
 }))
 
 export const MainContainer = styled('div')(({ theme }) => ({

@@ -1,8 +1,9 @@
 import React from 'react'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core'
+import { uniqueId } from 'lodash'
 import { AddIcon } from 'img'
-import { ActivityItem } from '../context'
+import { ActivityItem } from 'core/context'
 import { Input } from '../lib'
 
 const useStyles = makeStyles(() => ({
@@ -34,7 +35,7 @@ export const NewActivity: React.FC<NewActivityProps> = ({ onAdd }) => {
 
   const handleClick = () => {
     if (!inputValue) return
-    onAdd({ description: inputValue, time: '00:30' })
+    onAdd({ id: uniqueId('activity-'), description: inputValue, time: '00:30' })
     setInputValue('')
   }
 
