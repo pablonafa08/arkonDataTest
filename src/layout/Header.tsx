@@ -3,11 +3,11 @@ import { makeStyles, AppBar, Toolbar } from '@material-ui/core'
 
 export const HEADER_HEIGHT = 64
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   appBar: {
     boxShadow: 'none',
     height: HEADER_HEIGHT,
-    background: '#293462',
+    background: theme.palette.primary.main,
   },
   body: {
     display: 'flex',

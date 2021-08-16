@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core'
 import { uniqueId } from 'lodash'
 import { AddIcon } from 'img'
 import { ActivityItem } from 'core/context'
-import { Input } from '../lib'
+import { Input, Dialog, Button, AcceptButton } from '../lib'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -31,6 +31,7 @@ interface NewActivityProps {
 
 export const NewActivity: React.FC<NewActivityProps> = ({ onAdd }) => {
   const classes = useStyles()
+  const [isOpen, setOpen] = React.useState(false)
   const [inputValue, setInputValue] = React.useState('')
 
   const handleClick = () => {
@@ -40,11 +41,20 @@ export const NewActivity: React.FC<NewActivityProps> = ({ onAdd }) => {
   }
 
   return (
-    <div className={classes.root}>
-      <Input placeholder="Descripción" value={inputValue} onChange={ev => setInputValue(ev.target.value)} />
-      <Input type="time" />
+    <>
+      <AcceptButton onClick={() => setOpen(true)}>Agregar</AcceptButton>
+      <Button onClick={() => setOpen(true)} variant="outlined" color="primary">
+        Agregar
+      </Button>
 
-      <AddIcon className={clsx(classes.button, { active: !!inputValue })} onClick={handleClick} />
-    </div>
+      <Dialog open={isOpen} title="Agregar nueva actividad" buttonPropsCancel={{ onClick: () => setOpen(false) }}>
+        <div className={classes.root}>
+          <Input placeholder="Descripción" value={inputValue} onChange={ev => setInputValue(ev.target.value)} />
+          <Input type="time" />
+
+          <AddIcon className={clsx(classes.button, { active: !!inputValue })} onClick={handleClick} />
+        </div>
+      </Dialog>
+    </>
   )
 }

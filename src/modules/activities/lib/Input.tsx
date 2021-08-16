@@ -1,11 +1,11 @@
 import React from 'react'
 import { TextField, TextFieldProps, withStyles, Grid } from '@material-ui/core'
 
-export const StyledInput = withStyles(() => ({
+export const StyledInput = withStyles(theme => ({
   root: {
     '& .MuiOutlinedInput-root': {
       borderRadius: 5,
-      color: '#293462',
+      color: theme.palette.primary.main,
       fontWeight: 300,
       backgroundColor: '#FFF',
     },

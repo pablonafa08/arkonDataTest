@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core'
 import { SortableHandle } from 'react-sortable-hoc'
-import { TwoLinesIcon, CheckIcon, PencilIcon, TrashIcon, PlayIcon, ReloadIcon } from 'img'
+import { TwoLinesIcon, CheckIcon, PencilIcon, TrashIcon, PlayIcon } from 'img'
 import { useActivitiesActions, ActivityItem } from 'core/context'
 import { ContainerActivity, TimeContent, Divider } from '../lib'
 
