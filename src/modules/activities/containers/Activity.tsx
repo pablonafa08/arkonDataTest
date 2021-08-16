@@ -18,7 +18,7 @@ interface ActivityProps {
 
 export const Activity: React.FC<ActivityProps> = ({ activity }) => {
   const classes = useStyles()
-  const { setCurrentActivity } = useActivitiesActions()
+  const { setCurrentActivity, setOpenAddEditDialog, setOpenDeleteDialog } = useActivitiesActions()
 
   const DragHandle = SortableHandle(() => <TwoLinesIcon className="mr-4 cursor-pointer" />)
 
@@ -36,8 +36,8 @@ export const Activity: React.FC<ActivityProps> = ({ activity }) => {
         <PlayIcon className={classes.icon} onClick={() => setCurrentActivity(activity)} />
 
         <Divider />
-        <PencilIcon className={classes.icon} />
-        <TrashIcon className={classes.icon} />
+        <PencilIcon className={classes.icon} onClick={() => setOpenAddEditDialog(activity)} />
+        <TrashIcon className={classes.icon} onClick={() => setOpenDeleteDialog(activity)} />
       </div>
     </ContainerActivity>
   )

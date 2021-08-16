@@ -8,16 +8,27 @@ export interface ActivityItem {
   isFinished?: boolean
 }
 
+export type OpenDialogType = 'addEdit' | 'delete'
+
 interface ActivitiesState {
   activities: ActivityItem[]
   currentActivity: ActivityItem
+  openDialog: OpenDialogType
+  activityEditDelete: ActivityItem
 }
 
-type ActivitiesActions = { type: 'SetActivities'; payload: ActivityItem[] } | { type: 'SetCurrentActivity'; payload: ActivityItem }
+type ActivitiesActions =
+  | { type: 'SetActivities'; payload: ActivityItem[] }
+  | { type: 'SetCurrentActivity'; payload: ActivityItem }
+  | { type: 'SetOpenAddEditDialog'; payload?: ActivityItem }
+  | { type: 'SetOpenDeleteDialog'; payload: ActivityItem }
+  | { type: 'SetCloseDialog' }
 
 const makeState = () => ({
   activities: [],
   currentActivity: null,
+  openDialog: null,
+  activityEditDelete: null,
 })
 
 const reducer: Reducer<ActivitiesState, ActivitiesActions> = (state, action) => {
@@ -26,6 +37,12 @@ const reducer: Reducer<ActivitiesState, ActivitiesActions> = (state, action) => 
       return { ...state, activities: action.payload }
     case 'SetCurrentActivity':
       return { ...state, currentActivity: action.payload }
+    case 'SetOpenAddEditDialog':
+      return { ...state, openDialog: 'addEdit', activityEditDelete: action.payload }
+    case 'SetOpenDeleteDialog':
+      return { ...state, openDialog: 'delete', activityEditDelete: action.payload }
+    case 'SetCloseDialog':
+      return { ...state, openDialog: null, activityEditDelete: null }
     default:
       return { ...state }
   }
