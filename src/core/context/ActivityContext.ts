@@ -1,10 +1,16 @@
 import { Reducer } from 'react'
 import { contextFactory } from 'core/utils'
 
+export type DefaultDuration = 'short' | 'medium' | 'long'
+
 export interface ActivityItem {
   id: string
   description: string
   time: string
+  typeDefaultDuration?: DefaultDuration
+  isCustomDuration: boolean
+  hours: number
+  minutes: number
   isFinished?: boolean
 }
 

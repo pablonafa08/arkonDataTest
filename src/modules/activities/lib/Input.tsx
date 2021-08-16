@@ -34,7 +34,7 @@ export interface InputProps extends Omit<TextFieldProps, 'variant' | 'fullWidth'
 
 export const Input: React.FC<InputProps> = props => {
   return (
-    <Grid item xs style={{ margin: 8 }}>
+    <Grid item xs style={{ margin: 8, width: '100%' }}>
       <StyledInput variant="outlined" fullWidth {...props} />
     </Grid>
   )

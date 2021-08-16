@@ -6,11 +6,9 @@ import App from './App'
 import reportWebVitals from './reportWebVitals'
 
 ReactDOM.render(
-  <React.StrictMode>
-    <AppProviders>
-      <App />
-    </AppProviders>
-  </React.StrictMode>,
+  <AppProviders>
+    <App />
+  </AppProviders>,
   document.getElementById('root'),
 )
 
