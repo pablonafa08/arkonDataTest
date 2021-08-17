@@ -1,8 +1,9 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core'
 import { SortableHandle } from 'react-sortable-hoc'
+import arrayMove from 'array-move'
 import { TwoLinesIcon, CheckIcon, PencilIcon, TrashIcon, PlayIcon } from 'img'
-import { useActivitiesActions, ActivityItem } from 'core/context'
+import { useActivitiesState, useActivitiesActions, ActivityItem } from 'core/context'
 import { ContainerActivity, TimeContent, Divider } from '../lib'
 
 const useStyles = makeStyles(() => ({
@@ -14,11 +15,18 @@ const useStyles = makeStyles(() => ({
 
 interface ActivityProps {
   activity: ActivityItem
+  index?: number
 }
 
-export const Activity: React.FC<ActivityProps> = ({ activity }) => {
+export const Activity: React.FC<ActivityProps> = ({ activity, index }) => {
   const classes = useStyles()
-  const { setCurrentActivity, setOpenAddEditDialog, setOpenDeleteDialog } = useActivitiesActions()
+  const { activities: itemsActivities } = useActivitiesState()
+  const { setCurrentActivity, setActivities, setOpenAddEditDialog, setOpenDeleteDialog } = useActivitiesActions()
+
+  const onPlayActivity = () => {
+    setCurrentActivity(activity)
+    setActivities(arrayMove(itemsActivities, index, 0))
+  }
 
   const DragHandle = SortableHandle(() => <TwoLinesIcon className="mr-4 cursor-pointer" />)
 
@@ -33,7 +41,7 @@ export const Activity: React.FC<ActivityProps> = ({ activity }) => {
         <CheckIcon className={classes.icon} />
 
         <Divider />
-        <PlayIcon className={classes.icon} onClick={() => setCurrentActivity(activity)} />
+        <PlayIcon className={classes.icon} onClick={onPlayActivity} />
 
         <Divider />
         <PencilIcon className={classes.icon} onClick={() => setOpenAddEditDialog(activity)} />

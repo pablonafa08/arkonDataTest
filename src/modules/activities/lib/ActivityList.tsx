@@ -25,6 +25,7 @@ export const ContainerActivity = styled('div')<Theme, { variant?: 'primary' | 'c
 export const TimeContent = styled('div')<Theme, { variant?: 'primary' | 'current' }>(({ variant = 'primary' }) => ({
   color: variant === 'primary' ? '#FFF' : '#293462',
   backgroundColor: variant === 'primary' ? '#293462' : '#FFF',
+  border: '1px solid #293462',
   padding: '2px 8px',
   borderRadius: 16,
   fontSize: 12,
