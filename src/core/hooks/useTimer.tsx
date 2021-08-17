@@ -1,15 +1,20 @@
 import React from 'react'
-import { parse, subSeconds, format, startOfDay, differenceInSeconds } from 'date-fns'
+import { parse, addSeconds, subSeconds, format, startOfDay, differenceInSeconds } from 'date-fns'
 
 const NOW = new Date()
 
-const getTimeFormated = (time, timeElapsed) => {
+const getTimeFormated = (time, timeElapsedInSeconds) => {
   if (!time) return null
 
-  const newDate = subSeconds(parse(time, 'HH:mm', NOW), timeElapsed)
-  const seconds = differenceInSeconds(newDate, startOfDay(NOW))
+  try {
+    const newDateRemaining = subSeconds(parse(time, 'HH:mm:ss', NOW), timeElapsedInSeconds) // time remaining - data type `Date`
+    const secondsLeft = differenceInSeconds(newDateRemaining, startOfDay(NOW)) // Number of seconds remaining
+    const newDateElapsed = addSeconds(startOfDay(NOW), timeElapsedInSeconds) // time elapsed - data type `Date`
 
-  return { secondsLeft: seconds, timeFormat: format(newDate, 'HH:mm:ss') }
+    return { secondsLeft, timeRemainingFormat: format(newDateRemaining, 'HH:mm:ss'), timeElapsedFormat: format(newDateElapsed, 'HH:mm:ss') }
+  } catch {
+    return null
+  }
 }
 
 interface TimerProps {
@@ -54,7 +59,8 @@ export const useTimer = ({ time, onExpire }: TimerProps) => {
   const reset = React.useCallback(() => setTimeElapsed(0), [])
 
   return {
-    currentTime: currentTime?.timeFormat,
+    timeRemaining: currentTime?.timeRemainingFormat,
+    timeElapsed: currentTime?.timeElapsedFormat,
     isTimerRunning,
     start,
     pause,

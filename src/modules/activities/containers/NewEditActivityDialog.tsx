@@ -5,9 +5,9 @@ import { ActivityItem, DefaultDuration } from 'core/context'
 import { Input, Dialog, Select } from '../lib'
 
 const TIMES_VALUE = {
-  short: '00:30',
-  medium: '00:45',
-  long: '01:00',
+  short: '00:30:00',
+  medium: '00:45:00',
+  long: '01:00:00',
 }
 
 const MINUTES_ARRAY = new Array(59).fill(0).map((_, i) => i + 1)
@@ -51,7 +51,7 @@ export const NewEditActivityDialog: React.FC<NewActivityProps> = ({ isOpen, acti
 
   const handleClick = () => {
     const timeData = {
-      time: !isChecked ? TIMES_VALUE[radioValue] : `0${hours}:${minutes.toString().padStart(2, '0')}`,
+      time: !isChecked ? TIMES_VALUE[radioValue] : `0${hours}:${minutes.toString().padStart(2, '0')}:00`,
       typeDefaultDuration: !isChecked ? radioValue : null,
       isCustomDuration: isChecked,
       hours: isChecked ? hours : 0,
@@ -101,7 +101,7 @@ export const NewEditActivityDialog: React.FC<NewActivityProps> = ({ isOpen, acti
   return (
     <Dialog open={isOpen} title="Agregar nueva actividad" buttonPropsCancel={{ onClick: onClose }} buttonPropsOk={{ onClick: handleClick, disabled: isDisabledButtonAccept() }}>
       <div className={classes.root}>
-        <Input placeholder="Descripción" value={inputValue} onChange={ev => setInputValue(ev.target.value)} className="" />
+        <Input placeholder="Descripción" value={inputValue} onChange={ev => setInputValue(ev.target.value)} autoFocus />
         <FormControlLabel control={<Checkbox checked={isChecked} onChange={ev => setChecked(ev.target.checked)} color="primary" />} label="Duración personalizada" className="my-2" />
 
         {selectDurationOption()}

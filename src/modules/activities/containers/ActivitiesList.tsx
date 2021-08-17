@@ -14,7 +14,7 @@ export const ActivitiesList = () => {
 
   const ActivityItem = SortableElement(({ item }) => <Activity activity={item} />)
 
-  const Activities = SortableContainer(({ items }) => <ul>{items.map((item, index) => (currentActivity?.id !== item.id ? <ActivityItem key={item.id} index={index} item={item} /> : null))}</ul>)
+  const Activities = SortableContainer(({ items }) => <ul>{items.map((item, index) => (currentActivity?.id !== item.id && !item.isFinished ? <ActivityItem key={item.id} index={index} item={item} /> : null))}</ul>)
 
   return <div>{itemsActivities.length ? <Activities items={itemsActivities} onSortEnd={onSortEnd} distance={1} lockAxis="y" useWindowAsScrollContainer useDragHandle /> : null}</div>
 }

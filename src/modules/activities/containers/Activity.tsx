@@ -29,7 +29,7 @@ export const Activity: React.FC<ActivityProps> = ({ activity }) => {
       </div>
 
       <div className="flex items-center">
-        <TimeContent>{activity.time}:00</TimeContent>
+        <TimeContent>{activity.time}</TimeContent>
         <CheckIcon className={classes.icon} />
 
         <Divider />

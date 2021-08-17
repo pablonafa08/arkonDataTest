@@ -12,6 +12,8 @@ export interface ActivityItem {
   hours: number
   minutes: number
   isFinished?: boolean
+  dateFinished?: Date
+  timeElapsed?: string
 }
 
 export type OpenDialogType = 'addEdit' | 'delete'
