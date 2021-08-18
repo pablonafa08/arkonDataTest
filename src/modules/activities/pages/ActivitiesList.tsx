@@ -17,6 +17,7 @@ export const ActivitiesListPage = () => {
           {itemsFiltered.length} Resultado(s) {filter !== 'all' ? 'filtrado(s)' : ''}
         </div>
         <Link to="/history">Tareas completadas</Link>
+        <Link to="/graphic">Gráfica</Link>
 
         <select onChange={ev => setFilter(ev.target.value)}>
           <option value="all">Todos</option>
