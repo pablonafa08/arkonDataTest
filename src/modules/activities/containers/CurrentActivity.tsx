@@ -31,7 +31,9 @@ export const CurrentActivity = () => {
     if (currentActivity) {
       start()
     }
-  }, [currentActivity, start])
+
+    return pause
+  }, [currentActivity, start, pause])
 
   if (!currentActivity) return null
 
@@ -45,7 +47,7 @@ export const CurrentActivity = () => {
 
         <Divider variant="current" />
         {isTimerRunning ? <PauseIcon className={classes.icon} onClick={pause} /> : <PlayIcon className={classes.icon} onClick={continueTimer} />}
-        <StopIcon className={classes.icon} />
+        <StopIcon className={classes.icon} onClick={() => setCurrentActivity(null)} />
         <ReloadIcon className={classes.icon} onClick={reset} />
       </div>
     </ContainerActivity>

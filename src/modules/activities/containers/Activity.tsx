@@ -28,6 +28,12 @@ export const Activity: React.FC<ActivityProps> = ({ activity, index }) => {
     setActivities(arrayMove(itemsActivities, index, 0))
   }
 
+  const onCompleteActivity = () => {
+    const newItems = [...itemsActivities]
+    newItems[index] = { ...newItems[index], isFinished: true, dateFinished: new Date(), timeElapsed: '00:00:00' }
+    setActivities(newItems)
+  }
+
   const DragHandle = SortableHandle(() => <TwoLinesIcon className="mr-4 cursor-pointer" />)
 
   return (
@@ -38,7 +44,7 @@ export const Activity: React.FC<ActivityProps> = ({ activity, index }) => {
 
       <div className="flex items-center">
         <TimeContent>{activity.time}</TimeContent>
-        <CheckIcon className={classes.icon} />
+        <CheckIcon className={classes.icon} onClick={onCompleteActivity} />
 
         <Divider />
         <PlayIcon className={classes.icon} onClick={onPlayActivity} />
