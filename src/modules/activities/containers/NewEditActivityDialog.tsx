@@ -4,7 +4,7 @@ import { uniqueId } from 'lodash'
 import { ActivityItem, DefaultDuration } from 'core/context'
 import { Input, Dialog, Select } from '../lib'
 
-const TIMES_VALUE = {
+export const TIMES_VALUE = {
   short: '00:30:00',
   medium: '00:45:00',
   long: '01:00:00',
