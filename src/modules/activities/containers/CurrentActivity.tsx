@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core'
 import { useActivitiesState, useActivitiesActions } from 'core/context'
 import { useTimer } from 'core/hooks'
 import { CheckIcon, PlayIcon, PauseIcon, StopIcon, ReloadIcon } from 'img'
+import { useSnackbar } from '../utils'
 import { ContainerActivity, TimeContent, Divider, Tooltip } from '../lib'
 
 const useStyles = makeStyles(() => ({
@@ -14,6 +15,7 @@ const useStyles = makeStyles(() => ({
 
 export const CurrentActivity = () => {
   const classes = useStyles()
+  const { successSnackbar } = useSnackbar()
   const { currentActivity, activities: itemsActivities } = useActivitiesState()
   const { setCurrentActivity, setActivities } = useActivitiesActions()
 
@@ -23,6 +25,7 @@ export const CurrentActivity = () => {
     newItems[indexActivity] = { ...newItems[indexActivity], isFinished: true, dateFinished: new Date(), timeElapsed }
     setActivities(newItems)
     setCurrentActivity(null)
+    successSnackbar('Tarea completada')
   }
 
   const { timeRemaining, timeElapsed, isTimerRunning, start, pause, continueTimer, reset } = useTimer({ time: currentActivity?.time, onExpire: () => onCompleteActivity(currentActivity?.time) })

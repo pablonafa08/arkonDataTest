@@ -4,6 +4,7 @@ import { SortableHandle } from 'react-sortable-hoc'
 import arrayMove from 'array-move'
 import { TwoLinesIcon, CheckIcon, PencilIcon, TrashIcon, PlayIcon } from 'img'
 import { useActivitiesState, useActivitiesActions, ActivityItem } from 'core/context'
+import { useSnackbar } from '../utils'
 import { ContainerActivity, TimeContent, Divider, Tooltip } from '../lib'
 
 const useStyles = makeStyles(() => ({
@@ -20,6 +21,7 @@ interface ActivityProps {
 
 export const Activity: React.FC<ActivityProps> = ({ activity, index }) => {
   const classes = useStyles()
+  const { successSnackbar } = useSnackbar()
   const { activities: itemsActivities } = useActivitiesState()
   const { setCurrentActivity, setActivities, setOpenAddEditDialog, setOpenDeleteDialog } = useActivitiesActions()
 
@@ -32,6 +34,7 @@ export const Activity: React.FC<ActivityProps> = ({ activity, index }) => {
     const newItems = [...itemsActivities]
     newItems[index] = { ...newItems[index], isFinished: true, dateFinished: new Date(), timeElapsed: '00:00:00' }
     setActivities(newItems)
+    successSnackbar('Tarea completada')
   }
 
   const DragHandle = SortableHandle(() => <TwoLinesIcon className="mr-4 cursor-pointer" />)
