@@ -2,5 +2,9 @@ import React from 'react'
 import { Graphic } from '../containers'
 
 export const GraphicPage = () => {
-  return <Graphic />
+  return (
+    <div style={{ width: 800 }}>
+      <Graphic />
+    </div>
+  )
 }
