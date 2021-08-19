@@ -4,6 +4,8 @@ import { VictoryChart, VictoryGroup, VictoryBar, VictoryTheme } from 'victory'
 import { useActivitiesState } from 'core/context'
 import { getDaysOfLastWeek, getActivitiesByDateAndTypeDuration } from '../utils'
 
+export const COLORS_BAR = ['#293462', '#067AE0', '#93A0D2', '#FFF']
+
 const NEW_THEME = VictoryTheme.grayscale
 assign(NEW_THEME.axis.style.tickLabels, { fontSize: 9, fill: '#817E7E' })
 
@@ -25,7 +27,7 @@ export const Graphic = () => {
 
   return (
     <VictoryChart theme={NEW_THEME} domainPadding={{ x: 20 }}>
-      <VictoryGroup offset={10} colorScale={['#293462', '#067AE0', '#93A0D2', '#FFF']} style={{ data: { stroke: '#293462', strokeWidth: 1 } }}>
+      <VictoryGroup offset={10} colorScale={COLORS_BAR} style={{ data: { stroke: '#293462', strokeWidth: 1 } }}>
         <VictoryBar data={actByTypeDuration.all.map((value, index) => ({ x: daysFormated[index], y: value }))} labels={({ datum }) => datum.y} />
         <VictoryBar data={actByTypeDuration.short.map((value, index) => ({ x: daysFormated[index], y: value }))} labels={({ datum }) => datum.y} />
         <VictoryBar data={actByTypeDuration.medium.map((value, index) => ({ x: daysFormated[index], y: value }))} labels={({ datum }) => datum.y} />

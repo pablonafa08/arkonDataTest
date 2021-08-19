@@ -6,8 +6,8 @@ import { HistoryListPage, GraphicPage } from 'modules/history/pages'
 
 const App = () => {
   return (
-    <MainLayout>
-      <BrowserRouter>
+    <BrowserRouter>
+      <MainLayout>
         <Switch>
           <Route path="/history">
             <HistoryListPage />
@@ -23,8 +23,8 @@ const App = () => {
 
           <Redirect to="/" />
         </Switch>
-      </BrowserRouter>
-    </MainLayout>
+      </MainLayout>
+    </BrowserRouter>
   )
 }
 

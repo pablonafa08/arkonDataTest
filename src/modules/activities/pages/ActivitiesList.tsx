@@ -2,7 +2,7 @@ import React from 'react'
 import { useActivitiesState, useActivitiesActions } from 'core/context'
 import { canSeeActivity } from '../utils'
 import { NewEditActivity, DeleteActivityDialog, ActivitiesList, CurrentActivity } from '../containers'
-import { AcceptButton, Link } from '../lib'
+import { AcceptButton } from '../lib'
 
 export const ActivitiesListPage = () => {
   const { activities } = useActivitiesState()
@@ -16,8 +16,6 @@ export const ActivitiesListPage = () => {
         <div>
           {itemsFiltered.length} Resultado(s) {filter !== 'all' ? 'filtrado(s)' : ''}
         </div>
-        <Link to="/history">Tareas completadas</Link>
-        <Link to="/graphic">Gráfica</Link>
 
         <select onChange={ev => setFilter(ev.target.value)}>
           <option value="all">Todos</option>

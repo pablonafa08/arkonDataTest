@@ -1,5 +1,6 @@
 import React from 'react'
 import { makeStyles, AppBar, Toolbar } from '@material-ui/core'
+import { Link } from 'modules/activities/lib'
 
 export const HEADER_HEIGHT = 64
 
@@ -11,7 +12,7 @@ const useStyles = makeStyles(theme => ({
   },
   body: {
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     padding: '0 20px',
     margin: 'auto',
     height: '100%',
@@ -28,6 +29,11 @@ export const Header = () => {
     <AppBar position="fixed" className={classes.appBar}>
       <Toolbar className={classes.body}>
         <span className="text-xl font-semibold">Listado de tareas</span>
+        <div>
+          <Link to="/">Tareas pendientes</Link>
+          <Link to="/history">Tareas completadas</Link>
+          <Link to="/graphic">Gráfica</Link>
+        </div>
       </Toolbar>
     </AppBar>
   )
