@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core'
 import { useActivitiesState, useActivitiesActions } from 'core/context'
 import { useTimer } from 'core/hooks'
 import { CheckIcon, PlayIcon, PauseIcon, StopIcon, ReloadIcon } from 'img'
-import { ContainerActivity, TimeContent, Divider } from '../lib'
+import { ContainerActivity, TimeContent, Divider, Tooltip } from '../lib'
 
 const useStyles = makeStyles(() => ({
   icon: {
@@ -43,12 +43,28 @@ export const CurrentActivity = () => {
 
       <div className="flex items-center">
         <TimeContent variant="current">{timeRemaining || currentActivity.time}</TimeContent>
-        <CheckIcon className={classes.icon} onClick={() => onCompleteActivity(timeElapsed)} />
+        <Tooltip title="Marcar tarea como completada">
+          <CheckIcon className={classes.icon} onClick={() => onCompleteActivity(timeElapsed)} />
+        </Tooltip>
 
         <Divider variant="current" />
-        {isTimerRunning ? <PauseIcon className={classes.icon} onClick={pause} /> : <PlayIcon className={classes.icon} onClick={continueTimer} />}
-        <StopIcon className={classes.icon} onClick={() => setCurrentActivity(null)} />
-        <ReloadIcon className={classes.icon} onClick={reset} />
+
+        {isTimerRunning ? (
+          <Tooltip title="Pausar tarea">
+            <PauseIcon className={classes.icon} onClick={pause} />
+          </Tooltip>
+        ) : (
+          <Tooltip title="Continuar tarea">
+            <PlayIcon className={classes.icon} onClick={continueTimer} />
+          </Tooltip>
+        )}
+
+        <Tooltip title="Detener tarea">
+          <StopIcon className={classes.icon} onClick={() => setCurrentActivity(null)} />
+        </Tooltip>
+        <Tooltip title="Reiniciar tarea">
+          <ReloadIcon className={classes.icon} onClick={reset} />
+        </Tooltip>
       </div>
     </ContainerActivity>
   )

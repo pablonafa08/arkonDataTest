@@ -20,7 +20,7 @@ export const DeleteActivityDialog = () => {
 
   return (
     <Dialog open={isOpenDialog} title="¿Estás seguro de que quieres eliminar?" buttonPropsCancel={{ onClick: setCloseDialog }} buttonPropsOk={{ onClick: onDelete }}>
-      <div className="text-center">Se eliminará la actividad:</div>
+      <div className="text-center">Se eliminará la tarea:</div>
       <div className="text-center font-bold">{activityEditDelete?.description}</div>
     </Dialog>
   )

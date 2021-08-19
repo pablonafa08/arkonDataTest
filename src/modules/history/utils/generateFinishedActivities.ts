@@ -34,7 +34,7 @@ export const generateFinishedActivities = numberRange => {
 
     return {
       id: uniqueId('AutoActivity-'),
-      description: `Actividad autogenerada ${numberRange * 10 + i}`,
+      description: `Tarea autogenerada ${numberRange * 10 + i}`,
       time: TIMES_VALUE[randomTypeDuration],
       typeDefaultDuration: randomTypeDuration,
       isFinished: true,

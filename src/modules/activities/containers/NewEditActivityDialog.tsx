@@ -99,7 +99,7 @@ export const NewEditActivityDialog: React.FC<NewActivityProps> = ({ isOpen, acti
   }
 
   return (
-    <Dialog open={isOpen} title="Agregar nueva actividad" buttonPropsCancel={{ onClick: onClose }} buttonPropsOk={{ onClick: handleClick, disabled: isDisabledButtonAccept() }}>
+    <Dialog open={isOpen} title={!activityEdit ? 'Agregar nueva tarea' : 'Modificar tarea'} buttonPropsCancel={{ onClick: onClose }} buttonPropsOk={{ onClick: handleClick, disabled: isDisabledButtonAccept() }}>
       <div className={classes.root}>
         <Input placeholder="Descripción" value={inputValue} onChange={ev => setInputValue(ev.target.value)} autoFocus />
         <FormControlLabel control={<Checkbox checked={isChecked} onChange={ev => setChecked(ev.target.checked)} color="primary" />} label="Duración personalizada" className="my-2" />

@@ -4,7 +4,7 @@ import { SortableHandle } from 'react-sortable-hoc'
 import arrayMove from 'array-move'
 import { TwoLinesIcon, CheckIcon, PencilIcon, TrashIcon, PlayIcon } from 'img'
 import { useActivitiesState, useActivitiesActions, ActivityItem } from 'core/context'
-import { ContainerActivity, TimeContent, Divider } from '../lib'
+import { ContainerActivity, TimeContent, Divider, Tooltip } from '../lib'
 
 const useStyles = makeStyles(() => ({
   icon: {
@@ -44,14 +44,22 @@ export const Activity: React.FC<ActivityProps> = ({ activity, index }) => {
 
       <div className="flex items-center">
         <TimeContent>{activity.time}</TimeContent>
-        <CheckIcon className={classes.icon} onClick={onCompleteActivity} />
+        <Tooltip title="Marcar tarea como completada">
+          <CheckIcon className={classes.icon} onClick={onCompleteActivity} />
+        </Tooltip>
 
         <Divider />
-        <PlayIcon className={classes.icon} onClick={onPlayActivity} />
+        <Tooltip title="Iniciar tarea">
+          <PlayIcon className={classes.icon} onClick={onPlayActivity} />
+        </Tooltip>
 
         <Divider />
-        <PencilIcon className={classes.icon} onClick={() => setOpenAddEditDialog(activity)} />
-        <TrashIcon className={classes.icon} onClick={() => setOpenDeleteDialog(activity)} />
+        <Tooltip title="Modificar tarea">
+          <PencilIcon className={classes.icon} onClick={() => setOpenAddEditDialog(activity)} />
+        </Tooltip>
+        <Tooltip title="Eliminar tarea">
+          <TrashIcon className={classes.icon} onClick={() => setOpenDeleteDialog(activity)} />
+        </Tooltip>
       </div>
     </ContainerActivity>
   )

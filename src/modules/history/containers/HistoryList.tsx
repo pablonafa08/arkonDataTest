@@ -23,7 +23,7 @@ export const HistoryList = () => {
     <div>
       <div className="flex justify-between">
         <div>Historial</div>
-        <AcceptButton onClick={addFinishedActivities}>Generar 10 actividades</AcceptButton>
+        <AcceptButton onClick={addFinishedActivities}>Generar 10 tareas</AcceptButton>
       </div>
 
       {activitiesFinished.map(item => (

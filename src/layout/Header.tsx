@@ -27,7 +27,7 @@ export const Header = () => {
   return (
     <AppBar position="fixed" className={classes.appBar}>
       <Toolbar className={classes.body}>
-        <span className="text-xl font-semibold">Listado de actividades</span>
+        <span className="text-xl font-semibold">Listado de tareas</span>
       </Toolbar>
     </AppBar>
   )
