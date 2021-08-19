@@ -1,6 +1,7 @@
 import React from 'react'
 import { compareAsc } from 'date-fns'
 import { useActivitiesState } from 'core/context'
+import { NoResultsMessage } from 'modules/activities/lib'
 import { TopContentHistotyList } from './TopContentHistotyList'
 import { ActivityComplete } from './ActivityComplete'
 
@@ -12,9 +13,7 @@ export const HistoryList = () => {
     <>
       <TopContentHistotyList activitiesFinished={activitiesFinished} />
 
-      {activitiesFinished.map(item => (
-        <ActivityComplete key={item.id} item={item} />
-      ))}
+      {activitiesFinished.length ? activitiesFinished.map(item => <ActivityComplete key={item.id} item={item} />) : <NoResultsMessage>No hay tareas completadas</NoResultsMessage>}
     </>
   )
 }

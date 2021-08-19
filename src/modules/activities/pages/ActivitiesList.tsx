@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core'
 import { useActivitiesState, useActivitiesActions } from 'core/context'
 import { canSeeActivity } from '../utils'
 import { NewEditActivity, DeleteActivityDialog, ActivitiesList, CurrentActivity } from '../containers'
-import { Button, MainContainer } from '../lib'
+import { Button, MainContainer, NoResultsMessage } from '../lib'
 
 const useStyles = makeStyles(theme => ({
   topContent: {
@@ -67,7 +67,7 @@ export const ActivitiesListPage = () => {
       </div>
 
       <CurrentActivity />
-      <ActivitiesList filter={filter} />
+      {itemsFiltered.length ? <ActivitiesList filter={filter} /> : <NoResultsMessage>No hay tareas pendientes</NoResultsMessage>}
 
       <NewEditActivity />
       <DeleteActivityDialog />

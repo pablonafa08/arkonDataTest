@@ -1,6 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core'
 import { useActivitiesState } from 'core/context'
+import { NoResultsMessage } from 'modules/activities/lib'
 import { Graphic, COLORS_BAR } from '../containers'
 
 const TYPES_DURATION = ['Total', 'Corto', 'Mediano', 'Largo']
@@ -56,5 +57,5 @@ export const GraphicPage = () => {
     </>
   )
 
-  return <div className={classes.root}>{activitiesFinished.length ? graphicAndColors : 'No hay registros'}</div>
+  return <div className={classes.root}>{activitiesFinished.length ? graphicAndColors : <NoResultsMessage>No hay tareas completadas</NoResultsMessage>}</div>
 }

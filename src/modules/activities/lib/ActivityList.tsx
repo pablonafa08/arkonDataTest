@@ -58,24 +58,19 @@ export const MainContainer = styled('div')({
   margin: 'auto',
 })
 
-// -------------No usadas-------------
-
-export const ErrorMessage = styled('div')(({ theme }) => ({
+export const NoResultsMessage = styled('div')(({ theme }) => ({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
   textAlign: 'center',
-  background: '#F66055',
-  border: '1px solid #F21C0D',
+  background: theme.palette.info.main,
+  border: `1px solid ${theme.palette.info.dark}`,
   color: '#FFF',
   fontSize: 20,
   fontWeight: 600,
   borderRadius: 10,
   minHeight: 50,
-  maxWidth: 1000,
+  maxWidth: 800,
   margin: '40px auto',
   padding: 8,
-  [theme.breakpoints.up('sm')]: {
-    margin: 'auto',
-  },
 }))
