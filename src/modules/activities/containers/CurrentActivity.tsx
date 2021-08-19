@@ -1,15 +1,16 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core'
+import { makeStyles, Hidden } from '@material-ui/core'
 import { useActivitiesState, useActivitiesActions } from 'core/context'
 import { useTimer } from 'core/hooks'
 import { CheckIcon, PlayIcon, PauseIcon, StopIcon, ReloadIcon } from 'img'
 import { useSnackbar } from '../utils'
-import { ContainerActivity, TimeContent, Divider, Tooltip } from '../lib'
+import { ContainerActivity, ContentDataActivity, TimeContent, Divider, Tooltip } from '../lib'
 
 const useStyles = makeStyles(() => ({
   icon: {
     marginLeft: 12,
     cursor: 'pointer',
+    flexShrink: 0,
   },
 }))
 
@@ -42,33 +43,39 @@ export const CurrentActivity = () => {
 
   return (
     <ContainerActivity variant="current">
-      <div>{currentActivity.description}</div>
+      <ContentDataActivity>
+        <div>{currentActivity.description}</div>
 
-      <div className="flex items-center">
-        <TimeContent variant="current">{timeRemaining || currentActivity.time}</TimeContent>
-        <Tooltip title="Marcar tarea como completada">
-          <CheckIcon className={classes.icon} onClick={() => onCompleteActivity(timeElapsed)} />
-        </Tooltip>
+        <Hidden smUp>
+          <Divider orientation="horizontal" variant="current" />
+        </Hidden>
 
-        <Divider variant="current" />
-
-        {isTimerRunning ? (
-          <Tooltip title="Pausar tarea">
-            <PauseIcon className={classes.icon} onClick={pause} />
+        <div className="flex items-center">
+          <TimeContent variant="current">{timeRemaining || currentActivity.time}</TimeContent>
+          <Tooltip title="Marcar tarea como completada">
+            <CheckIcon className={classes.icon} onClick={() => onCompleteActivity(timeElapsed)} />
           </Tooltip>
-        ) : (
-          <Tooltip title="Continuar tarea">
-            <PlayIcon className={classes.icon} onClick={continueTimer} />
-          </Tooltip>
-        )}
 
-        <Tooltip title="Detener tarea">
-          <StopIcon className={classes.icon} onClick={() => setCurrentActivity(null)} />
-        </Tooltip>
-        <Tooltip title="Reiniciar tarea">
-          <ReloadIcon className={classes.icon} onClick={reset} />
-        </Tooltip>
-      </div>
+          <Divider variant="current" />
+
+          {isTimerRunning ? (
+            <Tooltip title="Pausar tarea">
+              <PauseIcon className={classes.icon} onClick={pause} />
+            </Tooltip>
+          ) : (
+            <Tooltip title="Continuar tarea">
+              <PlayIcon className={classes.icon} onClick={continueTimer} />
+            </Tooltip>
+          )}
+
+          <Tooltip title="Detener tarea">
+            <StopIcon className={classes.icon} onClick={() => setCurrentActivity(null)} />
+          </Tooltip>
+          <Tooltip title="Reiniciar tarea">
+            <ReloadIcon className={classes.icon} onClick={reset} />
+          </Tooltip>
+        </div>
+      </ContentDataActivity>
     </ContainerActivity>
   )
 }

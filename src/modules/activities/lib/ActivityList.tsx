@@ -4,8 +4,8 @@ export const ContainerActivity = styled('div')<Theme, { variant?: 'primary' | 'c
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  margin: 8,
-  padding: '12px 20px',
+  margin: '8px 0',
+  padding: '4px 8px',
   overflow: 'hidden',
   border: `1px solid ${variant === 'primary' ? '#E6E5E5' : '#293462'}`,
   borderRadius: 10,
@@ -22,6 +22,19 @@ export const ContainerActivity = styled('div')<Theme, { variant?: 'primary' | 'c
   },
 }))
 
+export const ContentDataActivity = styled('div')(({ theme }) => ({
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  width: '100%',
+  textAlign: 'center',
+  [theme.breakpoints.up('sm')]: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    textAlign: 'left',
+  },
+}))
+
 export const TimeContent = styled('div')<Theme, { variant?: 'primary' | 'current' }>(({ variant = 'primary' }) => ({
   color: variant === 'primary' ? '#FFF' : '#293462',
   backgroundColor: variant === 'primary' ? '#293462' : '#FFF',
@@ -32,28 +45,20 @@ export const TimeContent = styled('div')<Theme, { variant?: 'primary' | 'current
   fontWeight: 500,
 }))
 
-export const Divider = styled('div')<Theme, { variant?: 'primary' | 'current' }>(({ variant = 'primary' }) => ({
+export const Divider = styled('div')<Theme, { variant?: 'primary' | 'current'; orientation?: 'vertical' | 'horizontal' }>(({ variant = 'primary', orientation = 'vertical' }) => ({
   backgroundColor: variant === 'primary' ? '#E6E5E5' : '#FFF',
-  width: 1,
-  height: 35,
-  marginLeft: 12,
+  width: orientation === 'vertical' ? 1 : '100%',
+  height: orientation === 'vertical' ? 35 : 1,
+  margin: orientation === 'vertical' ? '0 0 0 12px' : '8px 0',
 }))
 
-// -------------No usadas-------------
-export const MainContainer = styled('div')(({ theme }) => ({
-  display: 'grid',
-  gridTemplateColumns: 'repeat(1, minmax(0, 1fr))',
-  gap: 4,
-  maxWidth: 1400,
+export const MainContainer = styled('div')({
+  width: '100%',
+  maxWidth: 1280,
   margin: 'auto',
-  [theme.breakpoints.up('md')]: {
-    gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-    gap: 16,
-  },
-  [theme.breakpoints.up('xl')]: {
-    gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-  },
-}))
+})
+
+// -------------No usadas-------------
 
 export const ErrorMessage = styled('div')(({ theme }) => ({
   display: 'flex',

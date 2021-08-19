@@ -1,16 +1,17 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core'
+import { makeStyles, Hidden } from '@material-ui/core'
 import { SortableHandle } from 'react-sortable-hoc'
 import arrayMove from 'array-move'
 import { TwoLinesIcon, CheckIcon, PencilIcon, TrashIcon, PlayIcon } from 'img'
 import { useActivitiesState, useActivitiesActions, ActivityItem } from 'core/context'
 import { useSnackbar } from '../utils'
-import { ContainerActivity, TimeContent, Divider, Tooltip } from '../lib'
+import { ContainerActivity, ContentDataActivity, TimeContent, Divider, Tooltip } from '../lib'
 
 const useStyles = makeStyles(() => ({
   icon: {
     marginLeft: 12,
     cursor: 'pointer',
+    flexShrink: 0,
   },
 }))
 
@@ -37,33 +38,39 @@ export const Activity: React.FC<ActivityProps> = ({ activity, index }) => {
     successSnackbar('Tarea completada')
   }
 
-  const DragHandle = SortableHandle(() => <TwoLinesIcon className="mr-4 cursor-pointer" />)
+  const DragHandle = SortableHandle(() => <TwoLinesIcon className="mr-4 cursor-pointer flex-shrink-0" />)
 
   return (
     <ContainerActivity>
-      <div className="flex items-center">
-        <DragHandle /> {activity.description}
-      </div>
+      <DragHandle />
 
-      <div className="flex items-center">
-        <TimeContent>{activity.time}</TimeContent>
-        <Tooltip title="Marcar tarea como completada">
-          <CheckIcon className={classes.icon} onClick={onCompleteActivity} />
-        </Tooltip>
+      <ContentDataActivity>
+        <div className="flex items-center">{activity.description}</div>
 
-        <Divider />
-        <Tooltip title="Iniciar tarea">
-          <PlayIcon className={classes.icon} onClick={onPlayActivity} />
-        </Tooltip>
+        <Hidden smUp>
+          <Divider orientation="horizontal" />
+        </Hidden>
 
-        <Divider />
-        <Tooltip title="Modificar tarea">
-          <PencilIcon className={classes.icon} onClick={() => setOpenAddEditDialog(activity)} />
-        </Tooltip>
-        <Tooltip title="Eliminar tarea">
-          <TrashIcon className={classes.icon} onClick={() => setOpenDeleteDialog(activity)} />
-        </Tooltip>
-      </div>
+        <div className="flex items-center">
+          <TimeContent>{activity.time}</TimeContent>
+          <Tooltip title="Marcar tarea como completada">
+            <CheckIcon className={classes.icon} onClick={onCompleteActivity} />
+          </Tooltip>
+
+          <Divider />
+          <Tooltip title="Iniciar tarea">
+            <PlayIcon className={classes.icon} onClick={onPlayActivity} />
+          </Tooltip>
+
+          <Divider />
+          <Tooltip title="Modificar tarea">
+            <PencilIcon className={classes.icon} onClick={() => setOpenAddEditDialog(activity)} />
+          </Tooltip>
+          <Tooltip title="Eliminar tarea">
+            <TrashIcon className={classes.icon} onClick={() => setOpenDeleteDialog(activity)} />
+          </Tooltip>
+        </div>
+      </ContentDataActivity>
     </ContainerActivity>
   )
 }

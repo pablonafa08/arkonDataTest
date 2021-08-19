@@ -1,24 +1,28 @@
 import React from 'react'
-import { Link as RouterLink } from 'react-router-dom'
+import { Link as RouterLink, useLocation } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core'
+import clsx from 'clsx'
 
 const useStyles = makeStyles(theme => ({
   root: {
     color: theme.palette.common.white,
-    marginRight: 8,
+    marginRight: 12,
   },
 }))
 
-export interface LinkProps {
+export interface LinkProps extends React.HtmlHTMLAttributes<HTMLSpanElement> {
   to: string
 }
 
-export const Link: React.FC<LinkProps> = ({ to, children }) => {
+export const Link: React.FC<LinkProps> = ({ to, children, ...othersProps }) => {
   const classes = useStyles()
+  const location = useLocation()
 
   return (
-    <RouterLink to={to} className={classes.root}>
-      {children}
-    </RouterLink>
+    <span {...othersProps}>
+      <RouterLink to={to} className={clsx(classes.root, { underline: location.pathname === to })}>
+        {children}
+      </RouterLink>
+    </span>
   )
 }
