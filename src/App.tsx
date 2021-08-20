@@ -9,14 +9,17 @@ const App = () => {
     <BrowserRouter>
       <MainLayout>
         <Switch>
+          {/* path for the list of completed activities */}
           <Route path="/history">
             <HistoryListPage />
           </Route>
 
+          {/* path to see the graph of the list of completed activities */}
           <Route path="/graphic">
             <GraphicPage />
           </Route>
 
+          {/* path for the list of pending activities */}
           <Route path="/">
             <ActivitiesListPage />
           </Route>

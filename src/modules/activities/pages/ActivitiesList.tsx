@@ -47,6 +47,7 @@ export const ActivitiesListPage = () => {
 
   return (
     <MainContainer>
+      {/* ***** Top of page (Num results, filter and add button) ***** */}
       <div className={classes.topContent}>
         <div className="flex items-center justify-between w-full">
           <div className={classes.results}>
@@ -61,9 +62,13 @@ export const ActivitiesListPage = () => {
         </Button>
       </div>
 
+      {/* ***** Activity started ***** */}
       <CurrentActivity />
+
+      {/* ***** List of activities ***** */}
       {itemsFiltered.length ? <ActivitiesList filter={filter} /> : <NoResultsMessage>No hay tareas pendientes</NoResultsMessage>}
 
+      {/* ***** Dialogs to create, edit and delete activity ***** */}
       <NewEditActivity />
       <DeleteActivityDialog />
     </MainContainer>

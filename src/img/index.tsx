@@ -1,5 +1,6 @@
 import React from 'react'
 
+// import svg like component
 import { ReactComponent as TwoLinesSvg } from 'img/icons/Icon_two_lines.svg'
 import { ReactComponent as CheckSvg } from 'img/icons/Icon_check.svg'
 import { ReactComponent as PencilSvg } from 'img/icons/Icon_pencil.svg'
@@ -22,6 +23,7 @@ const defaultProps = {
   height: 20,
 }
 
+// icons repository
 export const TwoLinesIcon: IconSvg = props => <TwoLinesSvg {...defaultProps} {...props} />
 export const CheckIcon: IconSvg = props => <CheckSvg {...defaultProps} {...props} />
 export const PencilIcon: IconSvg = props => <PencilSvg {...defaultProps} {...props} />

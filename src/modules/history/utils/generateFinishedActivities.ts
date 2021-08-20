@@ -16,6 +16,7 @@ const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min
 }
 
+// get the days of the last week from today
 export const getDaysOfLastWeek = () => {
   const NOW = new Date()
 
@@ -26,6 +27,7 @@ export const getDaysOfLastWeek = () => {
   return itemsDays
 }
 
+// generates 10 completed activities, assigns them in the last 7 days randomly
 export const generateFinishedActivities = numberRange => {
   const daysOfLastWeek = getDaysOfLastWeek()
 

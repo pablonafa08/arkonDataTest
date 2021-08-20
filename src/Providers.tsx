@@ -8,6 +8,7 @@ export const AppProviders: React.FC = ({ children }) => {
   return (
     <ThemeProvider theme={AppTheme}>
       <SnackbarProvider>
+        {/* Context of activities */}
         <ActivitiesProvider>{children}</ActivitiesProvider>
       </SnackbarProvider>
     </ThemeProvider>

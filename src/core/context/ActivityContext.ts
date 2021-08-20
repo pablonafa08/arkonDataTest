@@ -32,6 +32,7 @@ type ActivitiesActions =
   | { type: 'SetOpenDeleteDialog'; payload: ActivityItem }
   | { type: 'SetCloseDialog' }
 
+// initial state of context, it can be an object or a function that return an object
 const makeState = () => ({
   activities: [],
   currentActivity: null,
@@ -39,6 +40,7 @@ const makeState = () => ({
   activityEditDelete: null,
 })
 
+// reducer of context
 const reducer: Reducer<ActivitiesState, ActivitiesActions> = (state, action) => {
   switch (action.type) {
     case 'SetActivities':
@@ -56,6 +58,9 @@ const reducer: Reducer<ActivitiesState, ActivitiesActions> = (state, action) => 
   }
 }
 
+// `contextFactory` create a new context using React.createContext
+// receive a `reducer`, `initial state` and `name` of context
+// return a `Provider`, hook to access the `state` and hook to access the `dispatch`
 const { WrappedProvider, useFactoryDispatch, useFactoryState } = contextFactory<ActivitiesState, ActivitiesActions>(reducer, makeState, 'ActivitiesContext')
 
 export const ActivitiesProvider = WrappedProvider

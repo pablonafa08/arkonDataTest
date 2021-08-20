@@ -39,6 +39,7 @@ export const NewEditActivityDialog: React.FC<NewActivityProps> = ({ isOpen, acti
   const [radioValue, setRadioValue] = React.useState<DefaultDuration>(activityEdit?.typeDefaultDuration || 'short')
   const [{ hours, minutes }, setDuration] = React.useState({ hours: activityEdit?.hours || 0, minutes: activityEdit?.minutes || 0 })
 
+  // runs when custom duration is selected
   const handleChangeSelect = (ev, type: 'hours' | 'minutes') => {
     const value = Number(ev.target.value)
 
@@ -49,6 +50,7 @@ export const NewEditActivityDialog: React.FC<NewActivityProps> = ({ isOpen, acti
     }))
   }
 
+  // it is executed when confirming the registration or editing of an activity
   const handleClick = () => {
     const timeData = {
       time: !isChecked ? TIMES_VALUE[radioValue] : `0${hours}:${minutes.toString().padStart(2, '0')}:00`,
@@ -62,10 +64,12 @@ export const NewEditActivityDialog: React.FC<NewActivityProps> = ({ isOpen, acti
     onEdit({ ...activityEdit, description: inputValue, ...timeData })
   }
 
+  // the fields are validated, if any are not full the registration button is deactivated
   const isDisabledButtonAccept = () => {
     return !inputValue || (isChecked && !hours && !minutes)
   }
 
+  // form where `select` components are displayed to select a custom duration
   const testDuration = (
     <Grid container>
       <Select label="Horas" value={hours} onChange={ev => handleChangeSelect(ev, 'hours')}>
@@ -86,6 +90,7 @@ export const NewEditActivityDialog: React.FC<NewActivityProps> = ({ isOpen, acti
     </Grid>
   )
 
+  // displays the form to select a default duration or choose a custom one
   const selectDurationOption = () => {
     if (isChecked) return testDuration
 

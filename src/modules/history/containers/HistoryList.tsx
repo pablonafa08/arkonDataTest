@@ -11,8 +11,10 @@ export const HistoryList = () => {
 
   return (
     <>
+      {/* ***** Top of page (Num results and button to generate random completed activities) ***** */}
       <TopContentHistotyList activitiesFinished={activitiesFinished} />
 
+      {/* ***** list of completed activities ***** */}
       {activitiesFinished.length ? activitiesFinished.map(item => <ActivityComplete key={item.id} item={item} />) : <NoResultsMessage>No hay tareas completadas</NoResultsMessage>}
     </>
   )

@@ -3,6 +3,7 @@ import { parse, addSeconds, subSeconds, format, startOfDay, differenceInSeconds 
 
 const NOW = new Date()
 
+// get different formats of current time
 const getTimeFormated = (time, timeElapsedInSeconds) => {
   if (!time) return null
 
@@ -23,11 +24,12 @@ interface TimerProps {
 }
 
 export const useTimer = ({ time, onExpire }: TimerProps) => {
-  const [isTimerRunning, setTimerRunning] = React.useState(false)
-  const [timeElapsed, setTimeElapsed] = React.useState(0)
+  const [isTimerRunning, setTimerRunning] = React.useState(false) // state to check if state is running
+  const [timeElapsed, setTimeElapsed] = React.useState(0) // seconds elapsed
 
   const currentTime = getTimeFormated(time, timeElapsed)
 
+  // runs when timer starts or pauses, the interval adds the seconds
   React.useEffect(() => {
     let interval
     if (isTimerRunning) {
@@ -41,6 +43,7 @@ export const useTimer = ({ time, onExpire }: TimerProps) => {
     }
   }, [isTimerRunning])
 
+  // check every second if the timer expired
   React.useEffect(() => {
     if (currentTime?.secondsLeft <= 0) {
       pause()
@@ -49,6 +52,7 @@ export const useTimer = ({ time, onExpire }: TimerProps) => {
     // eslint-disable-next-line
   }, [timeElapsed])
 
+  // functions to control the timer
   const start = React.useCallback(() => {
     setTimeElapsed(0)
     setTimerRunning(true)

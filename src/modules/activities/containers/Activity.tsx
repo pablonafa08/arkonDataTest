@@ -31,11 +31,13 @@ export const Activity: React.FC<ActivityProps> = ({ activity, index }) => {
   const onOpen = () => setDialogOpen(true)
   const onClose = () => setDialogOpen(false)
 
+  // set in context the current activity
   const onPlayActivity = () => {
     setCurrentActivity(activity)
     setActivities(arrayMove(itemsActivities, index, 0))
   }
 
+  // mark current activity as completed
   const onCompleteActivity = () => {
     const newItems = [...itemsActivities]
     newItems[index] = { ...newItems[index], isFinished: true, dateFinished: new Date(), timeElapsed: '00:00:00' }
@@ -43,6 +45,7 @@ export const Activity: React.FC<ActivityProps> = ({ activity, index }) => {
     successSnackbar('Tarea completada')
   }
 
+  // the list of activities was configured so that the item is only dragged by this component
   const DragHandle = SortableHandle(() => <TwoLinesIcon className="mr-4 cursor-pointer flex-shrink-0" />)
 
   return (

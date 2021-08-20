@@ -5,6 +5,7 @@ import { HistoryList } from '../containers'
 export const HistoryListPage = () => {
   return (
     <MainContainer>
+      {/* ***** list of completed activities ***** */}
       <HistoryList />
     </MainContainer>
   )

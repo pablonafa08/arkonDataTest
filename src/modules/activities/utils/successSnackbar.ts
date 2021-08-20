@@ -1,5 +1,6 @@
 import { useSnackbar as useSnackbarNotistack, OptionsObject } from 'notistack'
 
+// hook that returns notistack's snackbar
 export const useSnackbar = () => {
   const { enqueueSnackbar } = useSnackbarNotistack()
 

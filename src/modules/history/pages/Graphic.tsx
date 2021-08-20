@@ -45,6 +45,7 @@ export const GraphicPage = () => {
 
   const graphicAndColors = (
     <>
+      {/* ***** meaning of the color of each bar in the graph ***** */}
       <div className={classes.contentSquares}>
         {COLORS_BAR.map((color, index) => (
           <div key={`color-${color}`} className="flex items-center itemColor">
@@ -53,6 +54,7 @@ export const GraphicPage = () => {
         ))}
       </div>
 
+      {/* ***** bar graph ***** */}
       <Graphic activitiesFinished={activitiesFinished} />
     </>
   )

@@ -20,6 +20,7 @@ export const CurrentActivity = () => {
   const { currentActivity, activities: itemsActivities } = useActivitiesState()
   const { setCurrentActivity, setActivities } = useActivitiesActions()
 
+  // mark current activity as completed
   const onCompleteActivity = timeElapsed => {
     const newItems = [...itemsActivities]
     const indexActivity = newItems.findIndex(item => item.id === currentActivity.id)
@@ -29,8 +30,10 @@ export const CurrentActivity = () => {
     successSnackbar('Tarea completada')
   }
 
+  // use of timer
   const { timeRemaining, timeElapsed, isTimerRunning, start, pause, continueTimer, reset } = useTimer({ time: currentActivity?.time, onExpire: () => onCompleteActivity(currentActivity?.time) })
 
+  // start timer when component is mounted and stop when is unmounted
   React.useEffect(() => {
     if (currentActivity) {
       start()

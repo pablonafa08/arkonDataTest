@@ -33,6 +33,7 @@ export const Header = () => {
 
   return (
     <>
+      {/* Appbar made with material */}
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar className={classes.body}>
           <span className="text-xl font-semibold">Listado de tareas</span>
@@ -50,6 +51,7 @@ export const Header = () => {
         </Toolbar>
       </AppBar>
 
+      {/* Show menu in mobile view */}
       <Drawer isOpen={isOpen} onClose={onClose} />
     </>
   )

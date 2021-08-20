@@ -1,5 +1,6 @@
 import { useActivitiesDispatch, ActivityItem } from './ActivityContext'
 
+// hook that contains the functions to trigger the dispatch
 export const useActivitiesActions = () => {
   const dispatch = useActivitiesDispatch()
 
