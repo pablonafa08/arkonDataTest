@@ -9,6 +9,7 @@ import { ReactComponent as PauseSvg } from 'img/icons/Icon_pause.svg'
 import { ReactComponent as StopSvg } from 'img/icons/Icon_stop.svg'
 import { ReactComponent as ReloadSvg } from 'img/icons/Icon_reload.svg'
 import { ReactComponent as MenuSvg } from 'img/icons/Icon_menu.svg'
+import { ReactComponent as FilterSvg } from 'img/icons/Icon_filter.svg'
 
 export type IconSvg = React.FunctionComponent<
   React.SVGProps<SVGSVGElement> & {
@@ -30,3 +31,4 @@ export const PauseIcon: IconSvg = props => <PauseSvg {...defaultProps} {...props
 export const StopIcon: IconSvg = props => <StopSvg {...defaultProps} {...props} />
 export const ReloadIcon: IconSvg = props => <ReloadSvg {...defaultProps} {...props} />
 export const MenuIcon: IconSvg = props => <MenuSvg {...defaultProps} {...props} />
+export const FilterIcon: IconSvg = props => <FilterSvg {...defaultProps} {...props} />

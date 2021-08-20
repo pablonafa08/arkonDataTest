@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core'
 import { useActivitiesState, useActivitiesActions } from 'core/context'
 import { canSeeActivity } from '../utils'
 import { NewEditActivity, DeleteActivityDialog, ActivitiesList, CurrentActivity } from '../containers'
-import { Button, MainContainer, NoResultsMessage } from '../lib'
+import { Button, MainContainer, NoResultsMessage, FilterSelect, SelectTypeDuration } from '../lib'
 
 const useStyles = makeStyles(theme => ({
   topContent: {
@@ -42,7 +42,7 @@ export const ActivitiesListPage = () => {
   const classes = useStyles()
   const { activities } = useActivitiesState()
   const { setOpenAddEditDialog } = useActivitiesActions()
-  const [filter, setFilter] = React.useState('all')
+  const [filter, setFilter] = React.useState<SelectTypeDuration>('all')
   const itemsFiltered = activities.filter(item => canSeeActivity(item, !item.isFinished, filter))
 
   return (
@@ -53,12 +53,7 @@ export const ActivitiesListPage = () => {
             {itemsFiltered.length} Resultado(s) {filter !== 'all' ? 'filtrado(s)' : ''}
           </div>
 
-          <select onChange={ev => setFilter(ev.target.value)}>
-            <option value="all">Todos</option>
-            <option value="short">Corto (30 min o menos)</option>
-            <option value="medium">Medio (mas 30 min)</option>
-            <option value="long">Largo (mas de 1 hr)</option>
-          </select>
+          <FilterSelect filterSelected={filter} onChange={value => setFilter(value)} />
         </div>
 
         <Button onClick={() => setOpenAddEditDialog()} className={classes.button} variant="contained" color="primary">
